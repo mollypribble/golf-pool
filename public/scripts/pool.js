@@ -3,7 +3,7 @@
 // 2. calculate player scores
 // 3. display leaderboard
 //first, last, score, rounds[1, 2, 3, 4], days played == length of leader rounds
-const baseURL = 'https://damp-forest-11782.herokuapp.com/'//'http://localhost:8000';
+const baseURL = 'https://damp-forest-11782.herokuapp.com'//'http://localhost:8000';
 let scores = [];
 // [
 //     JSON.stringify({
@@ -62,9 +62,8 @@ initPage = () => {
     <button id="new-player" class="btn">Enter Pool</button>`
      fetch(`${baseURL}/update`)
          .then(response => {
-            console.log("RES", response);
-            response.text();
-        })//response.json())
+            response.json();
+        })
          .then(data => {
             scores = data.leaderboard;
             console.log(scores);
