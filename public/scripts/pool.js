@@ -3,52 +3,52 @@
 // 2. calculate player scores
 // 3. display leaderboard
 //first, last, score, rounds[1, 2, 3, 4], days played == length of leader rounds
-const baseURL = '';//'http://localhost:8000';
-let scores =
-[
-    JSON.stringify({
-        first: "molly",
-        last: "pribble",
-        score: 1,
-        rounds: [2, -2, 1]
-    }),
-    JSON.stringify({
-        first: "james",
-        last: "pribble",
-        score: 3,
-        rounds: [2, 0, 1]
-    }),
-    JSON.stringify({
-        first: "jack",
-        last: "pribble",
-        score: 5,
-        rounds: [2, 3]
-    }),
-    JSON.stringify({
-        first: "amy",
-        last: "longcore",
-        score: 7,
-        rounds: [2, 5]
-    }),
-    JSON.stringify({
-        first: "frank",
-        last: "meyer",
-        score: 8,
-        rounds: [3, 5]
-    }),
-    JSON.stringify({
-        first: "jeff",
-        last: "kellstrom",
-        score: 10,
-        rounds: [5, 5]
-    }),
-    JSON.stringify({
-        first: "debbie",
-        last: "williams-hoak",
-        score: 15,
-        rounds: [10, 5]
-    })
-];
+const baseURL = 'https://golf-pick-em.herokuapp.com';//'http://localhost:8000';
+let scores = [];
+// [
+//     JSON.stringify({
+//         first: "molly",
+//         last: "pribble",
+//         score: 1,
+//         rounds: [2, -2, 1]
+//     }),
+//     JSON.stringify({
+//         first: "james",
+//         last: "pribble",
+//         score: 3,
+//         rounds: [2, 0, 1]
+//     }),
+//     JSON.stringify({
+//         first: "jack",
+//         last: "pribble",
+//         score: 5,
+//         rounds: [2, 3]
+//     }),
+//     JSON.stringify({
+//         first: "amy",
+//         last: "longcore",
+//         score: 7,
+//         rounds: [2, 5]
+//     }),
+//     JSON.stringify({
+//         first: "frank",
+//         last: "meyer",
+//         score: 8,
+//         rounds: [3, 5]
+//     }),
+//     JSON.stringify({
+//         first: "jeff",
+//         last: "kellstrom",
+//         score: 10,
+//         rounds: [5, 5]
+//     }),
+//     JSON.stringify({
+//         first: "debbie",
+//         last: "williams-hoak",
+//         score: 15,
+//         rounds: [10, 5]
+//     })
+// ];
 let daysPlayed;
 let topScore;
 let leaderboard = [];
