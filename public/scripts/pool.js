@@ -61,7 +61,7 @@ initPage = () => {
     document.getElementById('add-me').innerHTML = `<!-- Add new player interface -->
     <button id="new-player" class="btn">Enter Pool</button>`
      fetch(`${baseURL}/update`)
-         .then(response => response.json())
+         .then(response => response.text())//response.json())
          .then(data => {
             scores = data.leaderboard;
             console.log(scores);
