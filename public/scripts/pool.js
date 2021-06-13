@@ -63,11 +63,11 @@ initPage = () => {
      fetch(`${baseURL}/update`)
          .then(response => {
             console.log(response);
-            response.text().json();
+            response.json();
         })
          .then(data => {
+            console.log(data);
             scores = data.leaderboard;
-            console.log(scores);
 
             if (!(scores[0])){
                 console.log("no scores");
