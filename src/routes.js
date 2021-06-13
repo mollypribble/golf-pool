@@ -28,7 +28,7 @@ router.route("/update")
         fetch(updateURL)
             .then(response => response.json())
             .then(scores =>{
-                console.log(scores);
+                //console.log(scores);
                 res.status(200).send(scores);
             })
             .catch(err => {
