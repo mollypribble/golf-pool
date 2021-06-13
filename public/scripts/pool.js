@@ -62,9 +62,7 @@ initPage = () => {
     <button id="new-player" class="btn">Enter Pool</button>`
      fetch(`${baseURL}/update`)
          .then(response => {
-            console.log(response.text());
-            console.log(response.json());
-            console.log(response.text().json());
+            console.log(response);
             response.text().json();
         })
          .then(data => {
