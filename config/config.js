@@ -1,6 +1,6 @@
 const env = process.env;
 
-const tournamentID = env.API_tourney;//"79b00955-02a9-44d5-9b77-a5b32931914e"; // "0a4373fe-a2b9-4a9d-ad84-d342dea6b61a" //US Open 2021 
+const tournamentID = env.API_test_tourney;
 const key = env.API_key;
 const api_URL = "http://api.sportradar.us/golf/trial/pga/v3/en/2020/tournaments/"+ tournamentID + "/leaderboard.json?api_key=" + key;
 

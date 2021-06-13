@@ -60,12 +60,18 @@ initPage = () => {
     document.getElementById('leaderboard-inner').innerHTML = ``;
     document.getElementById('add-me').innerHTML = `<!-- Add new player interface -->
     <button id="new-player" class="btn">Enter Pool</button>`
-
+    console.log("1");
      fetch(`${baseURL}/update`)
          .then(response => response.json())
          .then(data => {
             scores = data.leaderboard;
             console.log(scores);
+
+            if (!(scores[0])){
+                console.log("no scores");
+                attachEventHandlers;
+                return;
+            }
 
             daysPlayed = scores[0].rounds.length;//JSON.parse(scores[0]).rounds.length;
             topScore = scores[0].score;//JSON.parse(scores[0]).score;

@@ -10,6 +10,7 @@ const router = express.Router();
 
 const config = require("../config/config");
 const fetch = require("node-fetch");
+const updateURL = config.apiURL;
 
 // base url
 router.route("/")
@@ -23,13 +24,17 @@ router.route("/")
 // update scores
 router.route("/update")
     .get((req, res) => {
-        console.log("GET /update");
-        fetch(config.apiURL)
-          .then(response => response.json())
-          .then(scores =>{
-                //console.log(scores);
+        console.log("GET /update", updateURL);
+        fetch(updateURL)
+            .then(response => response.json())
+            .then(scores =>{
+                console.log(scores);
                 res.status(200).send(scores);
-          });
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).send(err);
+            });
     });
 
 // reset pool
