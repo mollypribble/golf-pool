@@ -24,14 +24,11 @@ router.route("/")
 // update scores
 router.route("/update")
     .get((req, res) => {
-        console.log("GET /update", updateURL);
+        console.log("GET /update");
         fetch(updateURL)
-            .then(response => {
-                console.log(response);
-                return response.json();
-            })
+            .then(data =>  data.json())
             .then(scores =>{
-                //console.log(scores);
+                console.log(scores.id);
                 res.status(200).send(scores);
             })
             .catch(err => {

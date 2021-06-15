@@ -1,54 +1,5 @@
-// when you load page
-// 1. pull down tournament leaderboard
-// 2. calculate player scores
-// 3. display leaderboard
-//first, last, score, rounds[1, 2, 3, 4], days played == length of leader rounds
 const baseURL = 'https://damp-forest-11782.herokuapp.com';//'http://localhost:8000';
 let scores = [];
-// [
-//     JSON.stringify({
-//         first: "molly",
-//         last: "pribble",
-//         score: 1,
-//         rounds: [2, -2, 1]
-//     }),
-//     JSON.stringify({
-//         first: "james",
-//         last: "pribble",
-//         score: 3,
-//         rounds: [2, 0, 1]
-//     }),
-//     JSON.stringify({
-//         first: "jack",
-//         last: "pribble",
-//         score: 5,
-//         rounds: [2, 3]
-//     }),
-//     JSON.stringify({
-//         first: "amy",
-//         last: "longcore",
-//         score: 7,
-//         rounds: [2, 5]
-//     }),
-//     JSON.stringify({
-//         first: "frank",
-//         last: "meyer",
-//         score: 8,
-//         rounds: [3, 5]
-//     }),
-//     JSON.stringify({
-//         first: "jeff",
-//         last: "kellstrom",
-//         score: 10,
-//         rounds: [5, 5]
-//     }),
-//     JSON.stringify({
-//         first: "debbie",
-//         last: "williams-hoak",
-//         score: 15,
-//         rounds: [10, 5]
-//     })
-// ];
 let daysPlayed;
 let topScore;
 let leaderboard = [];
@@ -63,19 +14,31 @@ initPage = () => {
      fetch(`${baseURL}/update`)
          .then(response => response.json())
          .then(data => {
-            console.log(data);
-            scores = data.leaderboard;
+            console.log("data", data);
 
-            if (!(scores[0])){
-                console.log("no scores");
-                attachEventHandlers;
-                return;
+            let newData = true;
+
+            if (data.type == "invalid-json"){
+                console.log("NO NEW DATA");
+                newData = false;
+
+                fetch(`${baseURL}/players`)
+                .then(response => response.json())
+                .then(data => {
+                    numPlayers = data.length;
+                    data.forEach(p => {
+                        leaderboard.push([p._id, p.score, p.tiebreaker, p.name, p.pick1, p.pick2, p.pick3, p.pick4, p.pick5]);
+                    })
+                })
+                .then(buildLeaderboard)
             }
+            else {
+                scores = data.leaderboard;
 
-            daysPlayed = scores[0].rounds.length;//JSON.parse(scores[0]).rounds.length;
-            topScore = scores[0].score;//JSON.parse(scores[0]).score;
+                daysPlayed = scores[0].rounds.length;
+                topScore = scores[0].score;
 
-            fetch(`${baseURL}/players`)
+                fetch(`${baseURL}/players`)
                 .then(response => response.json())
                 .then(data => {
                     numPlayers = data.length;
@@ -92,10 +55,10 @@ initPage = () => {
                             .then(data => {
                                 let playerScore = data.score;
                                 scores.forEach(s =>{
-                                    let tempName = s.first_name+" "+s.last_name;//JSON.parse(s).first+" "+JSON.parse(s).last
+                                    let tempName = s.first_name+" "+s.last_name;
                                     if (tempName == data.pick1 || tempName == data.pick2 || tempName == data.pick3 || tempName == data.pick4 || tempName == data.pick5){
                                         console.log(tempName);
-                                        playerScore = playerScore + calcScore(daysPlayed, s.rounds, data.score); //JSON.parse(s).rounds
+                                        playerScore = playerScore + calcScore(daysPlayed, s.rounds, data.score); 
                                     }
                                     updateScore(p._id, playerScore);
                                 });
@@ -105,6 +68,7 @@ initPage = () => {
                     });
                 })
                 .then(attachEventHandlers);
+            }
          })    
 }
 
@@ -168,8 +132,6 @@ const createFromForm = ev => {
     let allGood = true;
 
     const tiebreaker = parseInt(formTiebreaker);
-
-    //(typeof tiebreaker, tiebreaker);
 
     if (tiebreaker){
         if (formName.length == 0 || formEmail.length == 0 || form1.length == 0 || form2.length == 0 || form3.length == 0 || form4.length == 0 || form5.length == 0){
@@ -375,5 +337,6 @@ buildLeaderboard = () => {
         })
     }
 }
-
+console.log();
+console.log();
 initPage()
