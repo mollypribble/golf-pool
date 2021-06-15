@@ -60,12 +60,8 @@ initPage = () => {
     document.getElementById('leaderboard-inner').innerHTML = ``;
     document.getElementById('add-me').innerHTML = `
     <button id="new-player" class="btn">Enter Pool</button>`
-    console.log(`${baseURL}/update`)
      fetch(`${baseURL}/update`)
-         .then(response => {
-             console.log(response)
-             return response.json()
-            })
+         .then(response => response.json())
          .then(data => {
             console.log(data);
             scores = data.leaderboard;
