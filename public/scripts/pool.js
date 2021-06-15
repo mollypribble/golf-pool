@@ -11,22 +11,13 @@ initPage = () => {
     document.getElementById('leaderboard-inner').innerHTML = ``;
     document.getElementById('add-me').innerHTML = `
     <button id="new-player" class="btn">Enter Pool</button>`
-     fetch(`${baseURL}/update`,{
-        headers : { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-         }
-  
-      })
+     fetch(`${baseURL}/update`)
          .then(response => response.json())
          .then(data => {
             console.log("data", data);
 
-            let newData = true;
-
             if (data.type == "invalid-json"){
                 console.log("NO NEW DATA");
-                newData = false;
 
                 fetch(`${baseURL}/players`)
                 .then(response => response.json())
@@ -75,7 +66,11 @@ initPage = () => {
                 })
                 .then(attachEventHandlers);
             }
-         })    
+         })
+         .catch(err => {
+            // Do something for an error here
+            console.log("Error Reading data " + err);
+          });    
 }
 
 const addNewPlayer = (fName, fEmail, form1, form2, form3, form4, form5, fTiebreaker) => {
