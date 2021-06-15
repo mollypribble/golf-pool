@@ -11,7 +11,13 @@ initPage = () => {
     document.getElementById('leaderboard-inner').innerHTML = ``;
     document.getElementById('add-me').innerHTML = `
     <button id="new-player" class="btn">Enter Pool</button>`
-     fetch(`${baseURL}/update`)
+     fetch(`${baseURL}/update`,{
+        headers : { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+         }
+  
+      })
          .then(response => response.json())
          .then(data => {
             console.log("data", data);
