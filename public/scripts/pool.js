@@ -58,11 +58,12 @@ initPage = () => {
     leaderboard = [];
 
     document.getElementById('leaderboard-inner').innerHTML = ``;
-    document.getElementById('add-me').innerHTML = `<!-- Add new player interface -->
+    document.getElementById('add-me').innerHTML = `
     <button id="new-player" class="btn">Enter Pool</button>`
      fetch(`${baseURL}/update`)
          .then(response => response.json())
          .then(data => {
+            console.log("check 1")
             console.log(data);
             scores = data.leaderboard;
 
