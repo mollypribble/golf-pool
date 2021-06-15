@@ -66,11 +66,7 @@ initPage = () => {
                 })
                 .then(attachEventHandlers);
             }
-         })
-         .catch(err => {
-            // Do something for an error here
-            console.log("Error Reading data " + err);
-          });    
+         })    
 }
 
 const addNewPlayer = (fName, fEmail, form1, form2, form3, form4, form5, fTiebreaker) => {
