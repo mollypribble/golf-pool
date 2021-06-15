@@ -1,4 +1,4 @@
-const baseURL = 'https://damp-forest-11782.herokuapp.com';//'http://localhost:8000';
+const baseURL = 'https://us-open-2021.herokuapp.com';//'https://damp-forest-11782.herokuapp.com';//'http://localhost:8000';
 let scores = [];
 let daysPlayed;
 let topScore;
