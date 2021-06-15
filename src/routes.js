@@ -26,7 +26,10 @@ router.route("/update")
     .get((req, res) => {
         console.log("GET /update", updateURL);
         fetch(updateURL)
-            .then(response => response.json())
+            .then(response => {
+                console.log(response);
+                return response.json();
+            })
             .then(scores =>{
                 //console.log(scores);
                 res.status(200).send(scores);
