@@ -60,6 +60,7 @@ initPage = () => {
     document.getElementById('leaderboard-inner').innerHTML = ``;
     document.getElementById('add-me').innerHTML = `
     <button id="new-player" class="btn">Enter Pool</button>`
+    console.log(`${baseURL}/update`)
      fetch(`${baseURL}/update`)
          .then(response => {
              console.log(response)
